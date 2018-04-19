@@ -1,4 +1,23 @@
 <!DOCTYPE html>
+<?php
+  session_start();
+  if ($_SESSION['user'] == '' || (time() - $_SESSION['LAST_ACTIVITY'] > 6000)){
+    $_SESSION = array();
+
+    if (ini_get("session.use_cookies")){
+      $params = session_get_cookie_params();
+      setcookie(session_name(), '', time() - 42000,
+          $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
+    }
+
+    session_destroy();
+    header("Location: index.php");
+    exit;
+  }
+
+  $_SESSION['LAST_ACTIVITY'] = time();
+
+?>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -75,7 +94,7 @@
                             <a href="#"><i class="fa fa-fw fa-cog"></i> Ajustes</a>
                         </li>
                         <li>
-                            <a href="index.php"><i class="fa fa-fw fa-sign-out"></i> Cerrar Sesión</a>
+                            <a href="proc/logout.php"><i class="fa fa-fw fa-sign-out"></i> Cerrar Sesión</a>
                         </li>
                     </ul>
                 </div>

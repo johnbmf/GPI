@@ -10,11 +10,16 @@ de esta (C://wamp64/www)
 
 -Aquí se debe realizar la clonación del repositorio, con lo que la carpeta del proyecto quedaría como: C://wamp64/www/GPI2
 
+## Importar base de datos forma automática
+-Iniciar WAMPSERVER (esperar a que el ícono esté de color verde).
+
+-Acceder a http://localhost/GPI2/proc/cargar_bd.php
+
+-Si sale el mensaje "Importación finalizada", entonces se importó correctamente la base de datos.
+
 ## Para ejecutar:
 -Iniciar WAMPSERVER (esperar a que el ícono esté de color verde).
--Luego, en el navegador acceder a http://localhost/GIP2/index.php
+-Luego, en el navegador acceder a http://localhost/GPI2/index.php
 
-## Importar base de datos
--Iniciar WAMPSERVER
--Acceder a http://localhost/phpmyadmin/index.php
--Iniciar sesión con user: root, sin password por defecto.
+##Datos de inicio de sesión:
+-Usuario: admin ; Password: 123456

@@ -16,18 +16,18 @@
     </div>
 
     <div class="col-sm-6 col-md-4 col-lg-3" style="margin:40px auto; float:none;">
-      <form method="post" action="main.php">
+      <form method="POST" action="proc/login.php">
 	<div class="col-xs-12">
           <div class="form-group">
 	    <div class="input-group">
 	      <div class="input-group-addon"><i class="fa fa-fw fa-user"></i></div>
-	      <input type="text" name="username" class="form-control" placeholder="Usuario">
+	      <input type="text" name="user" class="form-control" placeholder="Usuario">
 	    </div>
           </div>
           <div class="form-group">
 	    <div class="input-group">
 	      <div class="input-group-addon"><i class="fa fa-fw fa-lock"></i></div>
-	      <input type="password" name="password" class="form-control" placeholder="Contraseña">
+	      <input type="password" name="pass" class="form-control" placeholder="Contraseña">
 	    </div>
           </div>
         </div>
