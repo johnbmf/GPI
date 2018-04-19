@@ -12,7 +12,7 @@ de esta (C://wamp64/www)
 
 ## Para ejecutar:
 -Iniciar WAMPSERVER (esperar a que el ícono esté de color verde).
--Luego, en el navegador acceder a http://localhost/GIP2/index.php
+-Luego, en el navegador acceder a http://localhost/GPI2/index.php
 
 ## Importar base de datos
 -Iniciar WAMPSERVER
