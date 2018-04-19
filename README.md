@@ -5,7 +5,7 @@
 se recomienda descargar WAMP SERVER desde su página oficial: http://www.wampserver.com/en/
 -IMPORTANTE: Instalar como administrador.
 
--Una vez instalado WAMPSERVER, ubicar la ruta de instalaci�n, por defecto C://wamp64, y acceder a la carpeta www dentro
+-Una vez instalado WAMPSERVER, ubicar la ruta de instalación, por defecto C://wamp64, y acceder a la carpeta www dentro
 de esta (C://wamp64/www)
 
 -Aquí se debe realizar la clonación del repositorio, con lo que la carpeta del proyecto quedaría como: C://wamp64/www/GPI2
