@@ -21,5 +21,5 @@ de esta (C://wamp64/www)
 -Iniciar WAMPSERVER (esperar a que el ícono esté de color verde).
 -Luego, en el navegador acceder a http://localhost/GPI2/index.php
 
-##Datos de inicio de sesión:
+## Datos de inicio de sesión:
 -Usuario: admin ; Password: 123456
