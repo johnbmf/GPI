@@ -54,7 +54,7 @@
                     <div id="cm-menu-scroller">
                         <ul class="cm-menu-items">
                             <li><a href="main.php" class="sf-house">Pagina Principal</a></li>
-                            <li class="active"><a href="add_item.php" class="sf-house">Añadir Item</a></li>
+                            <li class="active"><a href="add_item.php" class="sf-sign-add">Añadir Item</a></li>
                             <li class=><a href="ver_item.php" class="sf-house">Ver Items</a></li>
                             <li class=><a href="ver_solicitudes.php" class="sf-house">Solicitudes</a></li>
                             <li class=><a href="gen_solicitud.php" class="sf-house">Generar Solicitud</a></li>
@@ -67,7 +67,7 @@
             <nav class="cm-navbar cm-navbar-primary">
                 <div class="btn btn-primary md-menu-white hidden-md hidden-lg" data-toggle="cm-menu"></div>
                 <div class="cm-flex">
-                    <h1>Añadir Items</h1>
+                    <h1>Ver Items</h1>
                 </div>
                 <div class="dropdown pull-right">
                     <button class="btn btn-primary md-notifications-white" data-toggle="dropdown"> <span class="label label-danger">NUM</span> </button>
