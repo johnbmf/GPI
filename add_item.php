@@ -111,13 +111,13 @@
              Puede que sea una buena opcion colocar aqui mismo poner algo para sumar stock.
              -->
                 <p>Para ingresar un nuevo item al inventario llene el formulario a continuación.</p>
-            <form method="POST" action="#">
+            <form method="POST" action="proc/add_itembd.php">
               <div class="row">
                 <div class="col-xs-3">
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><i></i></div>
-                      <input type="text" name="item_id" class="form-control" placeholder="Item ID">
+                      <input type="text" name="item_id" class="form-control" placeholder="Item ID" required>
                     </div>
                   </div>
                 </div>
@@ -126,7 +126,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><i></i></div>
-                      <input type="text" name="item_name" class="form-control" placeholder="Nombre Item">
+                      <input type="text" name="item_name" class="form-control" placeholder="Nombre Item" required>
                     </div>
                   </div>
                 </div>
@@ -135,7 +135,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><i></i></div>
-                      <select name="item_category" class="form-control" placeholder="Categoría">
+                      <select name="item_category" class="form-control" placeholder="Categoría" required>
                         <option value="" disabled selected value>-- Seleccione una categoría --</option>
                         <option value="MATERIAL">Material</option>
                         <option value="HERRAMIENTA">Herramienta</option>
@@ -148,7 +148,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><i></i></div>
-                      <input type="number" name="item_stock" class="form-control" placeholder="Stock" min="1">
+                      <input type="number" name="item_stock" class="form-control" placeholder="Stock" min="1" required>
                     </div>
                   </div>
                 </div>
