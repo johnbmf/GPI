@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 19-04-2018 a las 21:56:49
+-- Tiempo de generación: 03-08-2018 a las 02:48:12
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 5.6.31
 
@@ -21,6 +21,45 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `gpi`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `inventario`
+--
+
+DROP TABLE IF EXISTS `inventario`;
+CREATE TABLE IF NOT EXISTS `inventario` (
+  `item_id` int(11) NOT NULL,
+  `nombre` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
+  `categoria` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `stock` int(11) NOT NULL,
+  PRIMARY KEY (`item_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `inventario`
+--
+
+INSERT INTO `inventario` (`item_id`, `nombre`, `categoria`, `stock`) VALUES
+(1, 'Luminaria LED', 'MATERIAL', 10),
+(2, 'Tubería cobre 1m', 'MATERIAL', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `solicitud`
+--
+
+DROP TABLE IF EXISTS `solicitud`;
+CREATE TABLE IF NOT EXISTS `solicitud` (
+  `sol_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha_creacion` date NOT NULL,
+  `fecha_limite` date NOT NULL,
+  `estado` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  `comentario` text COLLATE utf8_spanish_ci NOT NULL,
+  PRIMARY KEY (`sol_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
