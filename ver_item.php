@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+  require_once('proc/db_conn.php');
   session_start();
   if ($_SESSION['user'] == '' || (time() - $_SESSION['LAST_ACTIVITY'] > 6000)){
     $_SESSION = array();
@@ -17,6 +18,10 @@
 
   $_SESSION['LAST_ACTIVITY'] = time();
 
+  $conexion = db_conn();
+  $sql = "SELECT * FROM inventario";
+  $resultado = $conexion->query($sql);
+
 ?>
 <html lang="en">
     <head>
@@ -27,6 +32,15 @@
         <link rel="stylesheet" type="text/css" href="assets/css/material-design.css">
         <link rel="stylesheet" type="text/css" href="assets/css/small-n-flat.css">
         <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
+        <script src="assets/js/lib/jquery-2.1.3.min.js"></script>
+        <script src="assets/js/jquery.mousewheel.min.js"></script>
+        <script src="assets/js/jquery.cookie.min.js"></script>
+        <script src="assets/js/fastclick.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/clearmin.min.js"></script>
+        <script src="assets/js/demo/home.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
         <title>GPI - Items</title>
     </head>
     <body class="cm-no-transition cm-1-navbar">
@@ -41,6 +55,9 @@
                         <ul class="cm-menu-items">
                             <li><a href="main.php" class="sf-house">Pagina Principal</a></li>
                             <li class="active"><a href="add_item.php" class="sf-house">Añadir Item</a></li>
+                            <li class=><a href="ver_item.php" class="sf-house">Ver Items</a></li>
+                            <li class=><a href="ver_solicitudes.php" class="sf-house">Solicitudes</a></li>
+                            <li class=><a href="gen_solicitud.php" class="sf-house">Generar Solicitud</a></li>
                         </ul>
                     </div>
                 </div>
@@ -104,23 +121,55 @@
         <div id="global">
             <div class="container-fluid cm-container-white">
              <!--
-             Crear una vista para todos los materiales en stock.
-             En realidad crear la consulta y despues formatearla para usar unos filtros de tabla que tengo.
+             Crear tabla con items
              -->
-                <p>VER ITEMS</p>
+             <?php
+                if ($resultado->num_rows > 0){
+                  echo '<table id="example" class="table table-striped table-hover" style="width:95%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Categoría</th>
+                            <th>Stock</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+                  while ($row = $resultado->fetch_assoc()){
+                    echo "
+                    <tr>
+                        <td>" . $row["item_id"] . "</td>
+                        <td>" . $row["nombre"] . "</td>
+                        <td>" . $row["categoria"] . "</td>
+                        <td>" . $row["stock"] . "</td>
+                    </tr>";
+                  }
+
+                  echo "
+                </tbody>
+                <tfoot>
+                  <tr>
+                      <th>ID</th>
+                      <th>Nombre</th>
+                      <th>Categoria</th>
+                      <th>Stock</th>
+                  </tr>
+                </tfoot>
+              </table>
+              <script>
+              $(document).ready(function(){
+                      $('#example').DataTable();
+                  });
+              </script>";
+              }
+
+             ?>
 
 
             <!--
-            END FORM
+            END
             -->
             <footer class="cm-footer"><span class="pull-left">Conectado como: <?php echo $_SESSION["user"];?></span><span class="pull-right">&copy; PAOMEDIA SARL</span><span class="pull-right">&copy; JIP -</span></footer>
         </div>
-        <script src="assets/js/lib/jquery-2.1.3.min.js"></script>
-        <script src="assets/js/jquery.mousewheel.min.js"></script>
-        <script src="assets/js/jquery.cookie.min.js"></script>
-        <script src="assets/js/fastclick.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/clearmin.min.js"></script>
-        <script src="assets/js/demo/home.js"></script>
     </body>
 </html>
