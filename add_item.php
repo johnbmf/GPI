@@ -27,7 +27,7 @@
         <link rel="stylesheet" type="text/css" href="assets/css/material-design.css">
         <link rel="stylesheet" type="text/css" href="assets/css/small-n-flat.css">
         <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
-        <title>GPI - Página Principal</title>
+        <title>GPI - Items</title>
     </head>
     <body class="cm-no-transition cm-1-navbar">
         <div id="cm-menu">
@@ -39,8 +39,8 @@
                 <div id="cm-menu-items-wrapper">
                     <div id="cm-menu-scroller">
                         <ul class="cm-menu-items">
-                            <li class="active"><a href="main.php" class="sf-house">Pagina Principal</a></li>
-                            <li class=><a href="add_item.php" class="sf-house">Añadir Item</a></li>
+                            <li><a href="main.php" class="sf-house">Pagina Principal</a></li>
+                            <li class="active"><a href="add_item.php" class="sf-house">Añadir Item</a></li>
                         </ul>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
             <nav class="cm-navbar cm-navbar-primary">
                 <div class="btn btn-primary md-menu-white hidden-md hidden-lg" data-toggle="cm-menu"></div>
                 <div class="cm-flex">
-                    <h1>Página Principal</h1>
+                    <h1>Añadir Items</h1>
                 </div>
                 <div class="dropdown pull-right">
                     <button class="btn btn-primary md-notifications-white" data-toggle="dropdown"> <span class="label label-danger">NUM</span> </button>
@@ -103,10 +103,66 @@
         </header>
         <div id="global">
             <div class="container-fluid cm-container-white">
-                <h2 style="margin-top:0;">Bienvenido a GPI Inventarios.</h2>
-                <p>Descripción.</p>
-                <p>Funcionalidades a la vista.</p>
-            </div>
+             <!--
+             Crear un form que permita ingresar items para agregarlos al inventario.
+             Puede que sea una buena opcion colocar aqui mismo poner algo para sumar stock.
+             -->
+                <p>Para ingresar un nuevo item al inventario llene el formulario a continuación.</p>
+            <form method="POST" action="#">
+              <div class="row">
+                <div class="col-xs-3">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><i></i></div>
+                      <input type="text" name="item_id" class="form-control" placeholder="Item ID">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-xs-3">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><i></i></div>
+                      <input type="text" name="item_name" class="form-control" placeholder="Nombre Item">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-xs-3">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><i></i></div>
+                      <select name="item_category" class="form-control" placeholder="Categoría">
+                        <option value="" disabled selected value>-- Seleccione una categoría --</option>
+                        <option value="MATERIAL">Material</option>
+                        <option value="HERRAMIENTA">Herramienta</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-xs-3">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><i></i></div>
+                      <input type="number" name="item_stock" class="form-control" placeholder="Stock" min="1">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col-xs-offset-11 col-xs-1">
+                    <button type="submit" class="btn btn-block btn-gpi">Añadir</button>
+                </div>
+              </div>
+
+            </form>
+
+            <!--
+            END FORM
+            -->
             <footer class="cm-footer"><span class="pull-left">Conectado como: <?php echo $_SESSION["user"];?></span><span class="pull-right">&copy; PAOMEDIA SARL</span><span class="pull-right">&copy; JIP -</span></footer>
         </div>
         <script src="assets/js/lib/jquery-2.1.3.min.js"></script>
