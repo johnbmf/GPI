@@ -40,7 +40,7 @@
                     <div id="cm-menu-scroller">
                         <ul class="cm-menu-items">
                             <li><a href="main.php" class="sf-house">Pagina Principal</a></li>
-                            <li class="active"><a href="add_item.php" class="sf-sign-add">Añadir Item</a></li>
+                            <li class="active"><a href="add_item.php" class="sf-house">Añadir Item</a></li>
                             <li class=><a href="ver_item.php" class="sf-house">Ver Items</a></li>
                             <li class=><a href="ver_solicitudes.php" class="sf-house">Solicitudes</a></li>
                             <li class=><a href="gen_solicitud.php" class="sf-house">Generar Solicitud</a></li>
@@ -111,8 +111,28 @@
              Puede que sea una buena opcion colocar aqui mismo poner algo para sumar stock.
              -->
                 <p>Para ingresar un nuevo item al inventario llene el formulario a continuación.</p>
-            <form method="POST" action="#">
+            <form method="POST" action="proc/generar_solicitud.php" target="_blank">
               <div class="row">
+
+                <div class="col-xs-3">
+                  <div class="form-gruop">
+                    <div class="input-group">
+                      <div class="input-group-addon"><i></i></div>
+                      <input type="date" name="fecha_lim" class="form-control" placeholder="limite">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-xs-3">
+                  <div class="form-gruop">
+                    <div class="input-group">
+                      <div class="input-group-addon"><i></i></div>
+                      <input type="number" name="sol_id" class="form-control" placeholder="298013873">
+                    </div>
+                  </div>
+                </div>
+
+
                 <div class="col-xs-3">
                   <div class="form-group">
                     <div class="input-group">
@@ -152,6 +172,17 @@
                     </div>
                   </div>
                 </div>
+
+
+                <div class="col-xs-3">
+                  <div class="form-gruop">
+                    <div class="input-group">
+                      <div class="input-group-addon"><i></i></div>
+                      <input type="textarea" rows="10" cols="50" name="comentario" class="form-control" placeholder="comentario">
+                    </div>
+                  </div>
+                </div>
+
 
               </div>
 

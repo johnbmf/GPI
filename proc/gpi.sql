@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 03-08-2018 a las 02:48:12
+-- Tiempo de generación: 03-08-2018 a las 21:54:49
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 5.6.31
 
@@ -25,12 +25,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `detallesolicitud`
+--
+
+DROP TABLE IF EXISTS `detallesolicitud`;
+CREATE TABLE IF NOT EXISTS `detallesolicitud` (
+  `sol_id` int(11) NOT NULL,
+  `nombre` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `item_id` varchar(45) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `inventario`
 --
 
 DROP TABLE IF EXISTS `inventario`;
 CREATE TABLE IF NOT EXISTS `inventario` (
-  `item_id` int(11) NOT NULL,
+  `item_id` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
   `nombre` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
   `categoria` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `stock` int(11) NOT NULL,
@@ -42,8 +56,14 @@ CREATE TABLE IF NOT EXISTS `inventario` (
 --
 
 INSERT INTO `inventario` (`item_id`, `nombre`, `categoria`, `stock`) VALUES
-(1, 'Luminaria LED', 'MATERIAL', 10),
-(2, 'Tubería cobre 1m', 'MATERIAL', 5);
+('1', 'Luminaria LED', 'MATERIAL', 10),
+('2', 'Tubería cobre 1m', 'MATERIAL', 5),
+('3', 'Calvos 1 pulgada', 'MATERIAL', 10),
+('4', 'Pala', 'HERRAMIENTA', 50),
+('5', 'Carretilla', 'HERRAMIENTA', 40),
+('6', 'Placa Compactadora', 'HERRAMIENTA', 5),
+('7', 'Rotomartillo 1500W', 'HERRAMIENTA', 6),
+('8', 'Cemento 25kg', 'MATERIAL', 150);
 
 -- --------------------------------------------------------
 
@@ -59,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `solicitud` (
   `estado` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `comentario` text COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`sol_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=666666667 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
