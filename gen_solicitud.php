@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+  require_once("proc/db_conn.php");
   session_start();
   if ($_SESSION['user'] == '' || (time() - $_SESSION['LAST_ACTIVITY'] > 6000)){
     $_SESSION = array();
@@ -17,6 +18,9 @@
 
   $_SESSION['LAST_ACTIVITY'] = time();
 
+  $conexion = db_conn();
+  $sql = "SELECT * FROM inventario";
+  $resultado = $conexion->query($sql);
 ?>
 <html lang="en">
     <head>
@@ -27,7 +31,7 @@
         <link rel="stylesheet" type="text/css" href="assets/css/material-design.css">
         <link rel="stylesheet" type="text/css" href="assets/css/small-n-flat.css">
         <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
-        <title>GPI - Items</title>
+        <title>GPI - Solicitudes</title>
     </head>
     <body class="cm-no-transition cm-1-navbar">
         <div id="cm-menu">
@@ -40,10 +44,10 @@
                     <div id="cm-menu-scroller">
                         <ul class="cm-menu-items">
                             <li><a href="main.php" class="sf-house">Pagina Principal</a></li>
-                            <li class="active"><a href="add_item.php" class="sf-house">Añadir Item</a></li>
-                            <li class=><a href="ver_item.php" class="sf-house">Ver Items</a></li>
-                            <li class=><a href="ver_solicitudes.php" class="sf-house">Solicitudes</a></li>
-                            <li class=><a href="gen_solicitud.php" class="sf-house">Generar Solicitud</a></li>
+                            <li><a href="add_item.php" class="sf-sign-add">Añadir Item</a></li>
+                            <li><a href="ver_item.php" class="sf-brick">Ver Items</a></li>
+                            <li><a href="ver_solicitudes.php" class="sf-monitor">Solicitudes</a></li>
+                            <li class="active"><a href="gen_solicitud.php" class="sf-file-excel">Generar Solicitud</a></li>
                         </ul>
                     </div>
                 </div>
@@ -53,7 +57,7 @@
             <nav class="cm-navbar cm-navbar-primary">
                 <div class="btn btn-primary md-menu-white hidden-md hidden-lg" data-toggle="cm-menu"></div>
                 <div class="cm-flex">
-                    <h1>Añadir Items</h1>
+                    <h1>Generar Solicitud</h1>
                 </div>
                 <div class="dropdown pull-right">
                     <button class="btn btn-primary md-notifications-white" data-toggle="dropdown"> <span class="label label-danger">NUM</span> </button>
@@ -107,58 +111,71 @@
         <div id="global">
             <div class="container-fluid cm-container-white">
              <!--
-             Crear un form que permita ingresar items para agregarlos al inventario.
-             Puede que sea una buena opcion colocar aqui mismo poner algo para sumar stock.
+
              -->
-                <p>Para ingresar un nuevo item al inventario llene el formulario a continuación.</p>
+            <?php
+            if (isset($_GET["s"])){
+              if ($_GET["s"] == 1){
+                echo "<div class='row'>
+                        <div class='col-xs-12'>
+                          <div class='alert alert-success'> Se ha generado la solicitud con éxito </div>
+                        </div>
+                      </div>";
+              }
+
+              else{
+                echo "<div class='row'>
+                        <div class='col-xs-12'>
+                          <div class='alert alert-danger'> Se ha producido un error al generar la solicitud. Intentelo nuevamente. </div>
+                        </div>
+                      </div>";
+              }
+            }
+            ?>
             <form method="POST" action="proc/generar_solicitud.php" target="_blank">
+              <h3>Datos de la solicitud</h3>
+              <br>
               <div class="row">
 
-                <div class="col-xs-3">
+                <div class="col-xs-2">
                   <div class="form-gruop">
+                    <label>ID de la solicitud</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i></i></div>
-                      <input type="date" name="fecha_lim" class="form-control" placeholder="limite">
+                      <input type="number" name="sol_id" class="form-control" placeholder="Ej: 35768" required>
                     </div>
                   </div>
                 </div>
 
-                <div class="col-xs-3">
+
+                <div class="col-xs-2">
                   <div class="form-gruop">
+                    <label>Fecha Limite</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i></i></div>
-                      <input type="number" name="sol_id" class="form-control" placeholder="298013873">
+                      <input type="date" name="fecha_lim" class="form-control" placeholder="limite" required>
                     </div>
                   </div>
                 </div>
-
-
-                <div class="col-xs-3">
-                  <div class="form-group">
-                    <div class="input-group">
-                      <div class="input-group-addon"><i></i></div>
-                      <input type="text" name="item_id" class="form-control" placeholder="Item ID">
-                    </div>
-                  </div>
-                </div>
+            </div>
+            <hr/>
+            <h3>Recursos a solicitar</h3>
+            <br>
+            <div class="row">
 
                 <div class="col-xs-3">
                   <div class="form-group">
+                    <label>Item</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i></i></div>
-                      <input type="text" name="item_name" class="form-control" placeholder="Nombre Item">
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-xs-3">
-                  <div class="form-group">
-                    <div class="input-group">
-                      <div class="input-group-addon"><i></i></div>
-                      <select name="item_category" class="form-control" placeholder="Categoría">
-                        <option value="" disabled selected value>-- Seleccione una categoría --</option>
-                        <option value="MATERIAL">Material</option>
-                        <option value="HERRAMIENTA">Herramienta</option>
+                      <select name="item_detalle_1" class="form-control" required>
+                        <option value="" disabled selected value>-- Seleccione un ítem --</option>
+                        <?php
+                          while ($row = $resultado->fetch_assoc()){
+                            echo "<option value='" . $row["item_id"] . " " . $row["nombre"] . "'>(ID: " . $row["item_id"] . ")" . $row["nombre"] . "</option>";
+                          }
+                          $resultado->data_seek(0);
+                        ?>
                       </select>
                     </div>
                   </div>
@@ -166,19 +183,140 @@
 
                 <div class="col-xs-3">
                   <div class="form-group">
+                    <label>Cantidad</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i></i></div>
-                      <input type="number" name="item_stock" class="form-control" placeholder="Stock" min="1">
+                      <input type="number" name="item_stock_1" class="form-control" placeholder="Ej: 10" min="1" required>
                     </div>
                   </div>
                 </div>
+          </div>
 
+          <div class="row">
 
-                <div class="col-xs-3">
+              <div class="col-xs-3">
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-addon"><i></i></div>
+                    <select name="item_detalle_2" class="form-control">
+                      <option value="" disabled selected value>-- Seleccione un ítem --</option>
+                      <?php
+                        while ($row = $resultado->fetch_assoc()){
+                          echo "<option value='" . $row["item_id"] . " " . $row["nombre"] . "'>(ID: " . $row["item_id"] . ")" . $row["nombre"] . "</option>";
+                        }
+                        $resultado->data_seek(0);
+                      ?>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-3">
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-addon"><i></i></div>
+                    <input type="number" name="item_stock_2" class="form-control" placeholder="Ej: 10" min="1">
+                  </div>
+                </div>
+              </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-xs-3">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon"><i></i></div>
+                  <select name="item_detalle_3" class="form-control" >
+                    <option value="" disabled selected value>-- Seleccione un ítem --</option>
+                    <?php
+                      while ($row = $resultado->fetch_assoc()){
+                        echo "<option value='" . $row["item_id"] . " " . $row["nombre"] . "'>(ID: " . $row["item_id"] . ")" . $row["nombre"] . "</option>";
+                      }
+                      $resultado->data_seek(0);
+                    ?>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xs-3">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon"><i></i></div>
+                  <input type="number" name="item_stock_3" class="form-control" placeholder="Ej: 10" min="1">
+                </div>
+              </div>
+            </div>
+      </div>
+
+      <div class="row">
+
+          <div class="col-xs-3">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><i></i></div>
+                <select name="item_detalle_4" class="form-control">
+                  <option value="" disabled selected value>-- Seleccione un ítem --</option>
+                  <?php
+                    while ($row = $resultado->fetch_assoc()){
+                      echo "<option value='" . $row["item_id"] . " " . $row["nombre"] . "'>(ID: " . $row["item_id"] . ")" . $row["nombre"] . "</option>";
+                    }
+                    $resultado->data_seek(0);
+                  ?>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-3">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><i></i></div>
+                <input type="number" name="item_stock_4" class="form-control" placeholder="Ej: 10" min="1">
+              </div>
+            </div>
+          </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-xs-3">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon"><i></i></div>
+              <select name="item_detalle_5" class="form-control">
+                <option value="" disabled selected value>-- Seleccione un ítem --</option>
+                <?php
+                  while ($row = $resultado->fetch_assoc()){
+                    echo "<option value='" . $row["item_id"] . " " . $row["nombre"] . "'>(ID: " . $row["item_id"] . ")" . $row["nombre"] . "</option>";
+                  }
+                  $resultado->data_seek(0);
+                ?>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-3">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon"><i></i></div>
+              <input type="number" name="item_stock_5" class="form-control" placeholder="Ej: 10" min="1">
+            </div>
+          </div>
+        </div>
+  </div>
+
+  <hr>
+  <h3>Comentario adicional</h3>
+  <br>
+        <div class="row">
+                <div class="col-xs-12">
                   <div class="form-gruop">
                     <div class="input-group">
                       <div class="input-group-addon"><i></i></div>
-                      <input type="textarea" rows="10" cols="50" name="comentario" class="form-control" placeholder="comentario">
+                      <textarea rows="8" name="comentario" class="form-control" placeholder="Comentario"></textarea>
                     </div>
                   </div>
                 </div>
@@ -188,7 +326,7 @@
 
               <div class="row">
                 <div class="col-xs-offset-11 col-xs-1">
-                    <button type="submit" class="btn btn-block btn-gpi">Añadir</button>
+                    <button type="submit" class="btn btn-block btn-gpi">Solicitar</button>
                 </div>
               </div>
 
