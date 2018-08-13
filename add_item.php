@@ -105,7 +105,7 @@
             </nav>
         </header>
         <div id="global">
-            <div class="container-fluid cm-container-white">
+            <div class="container-fluid cm-container-white" style="min-height:80vh;">
              <!--
              Crear un form que permita ingresar items para agregarlos al inventario.
              Puede que sea una buena opcion colocar aqui mismo poner algo para sumar stock.

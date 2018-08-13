@@ -105,7 +105,7 @@
             </nav>
         </header>
         <div id="global">
-            <div class="container-fluid cm-container-white">
+            <div class="container-fluid cm-container-white" style="min-height:80vh;">
                 <h2 style="margin-top:0;">Bienvenido a GPI Inventarios.</h2>
                 <p>Descripción.</p>
                 <p>Funcionalidades a la vista.</p>

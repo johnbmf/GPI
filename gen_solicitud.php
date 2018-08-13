@@ -109,7 +109,7 @@
             </nav>
         </header>
         <div id="global">
-            <div class="container-fluid cm-container-white">
+            <div class="container-fluid cm-container-white" style="min-height:80vh;">
              <!--
 
              -->

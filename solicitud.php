@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+  require_once("proc/db_conn.php");
   session_start();
   if ($_SESSION['user'] == '' || (time() - $_SESSION['LAST_ACTIVITY'] > 6000)){
     $_SESSION = array();
@@ -16,6 +17,14 @@
   }
 
   $_SESSION['LAST_ACTIVITY'] = time();
+
+
+  $conexion = db_conn();
+  $sol_id = $_GET["id"];
+  $sql = "SELECT * FROM solicitud WHERE sol_id=$sol_id";
+  $resultado = $conexion->query($sql)->fetch_assoc();
+  $sql = "SELECT * FROM detallesolicitud WHERE sol_id=$sol_id";
+  $res2 = $conexion->query($sql);
 
 ?>
 <html lang="en">
@@ -105,8 +114,62 @@
             </nav>
         </header>
         <div id="global">
-            <div class="container-fluid cm-container-white">
-                <h2 style="margin-top:0;">PAGINA DE DETALLE DE SOLICITUD</h2>
+            <div class="container-fluid cm-container-white" style="min-height:80vh;">
+                <h2 class="text-center" style="margin-top:0;">Solicitud <?php echo $sol_id;?></h2>
+                <h3> Detalle </h3>
+                <hr>
+                <div class="row">
+                  <div class="col-xs-1">
+                    <strong>Fecha de creación</strong><br>
+                    <strong>Fecha Límite</strong><br>
+                    <strong>Estado</strong><br>
+                  </div>
+                  <div class="col-xs-10">
+                    <?php
+                    echo ": " . $resultado["fecha_creacion"] . "<br>";
+                    echo ": " . $resultado["fecha_limite"] . "<br>";
+                    echo ": " . $resultado["estado"] . "<br>";
+                    ?>
+                  </div>
+                </div>
+                <br>
+                <h3> Materiales Solicitados </h3>
+                <hr>
+                <div class="row">
+                  <div class="col-xs-10 col-xs-offset-1">
+                    <table class="table table-dark">
+                      <thead>
+                        <tr>
+                          <th scope="col" class="col-xs-2">ID</th>
+                          <th scope="col" class="col-xs-8 text-center">Nombre</th>
+                          <th scope="col" class="col-xs-2 text-center">Cantidad</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <?php
+                        while ($row = $res2->fetch_assoc()){
+                          echo "
+                          <tr>
+                              <td>" . $row["item_id"] . "</td>
+                              <td>" . $row["nombre"] . "</td>
+                              <td class='text-center'>" . $row["cantidad"] . "</td>
+                          </tr>";
+                        }
+                       ?>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <br>
+                <h3> Comentarios adicionales </h3>
+                <hr>
+                <div class="row">
+                  <div class="col-xs-10 col-xs-offset-1">
+                  <?php
+                    echo $resultado["comentario"];
+                  ?>
+                  </div>
+                </div>
             </div>
             <footer class="cm-footer"><span class="pull-left">Conectado como: <?php echo $_SESSION["user"];?></span><span class="pull-right">&copy; PAOMEDIA SARL</span><span class="pull-right">&copy; JIP -</span></footer>
         </div>
