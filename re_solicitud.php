@@ -51,8 +51,9 @@
                             <li><a href="main.php" class="sf-house">Pagina Principal</a></li>
                             <li class=><a href="add_item.php" class="sf-sign-add">Añadir Item</a></li>
                             <li class=><a href="ver_item.php" class="sf-brick">Ver Items</a></li>
-                            <li class="active"><a href="ver_solicitudes.php" class="sf-monitor">Solicitudes</a></li>
+                            <li class=><a href="ver_solicitudes.php" class="sf-monitor">Solicitudes</a></li>
                             <li class=><a href="gen_solicitud.php" class="sf-file-excel">Generar Solicitud</a></li>
+                            <li class="active"><a href="r_solicitud.php" class="sf-monitor">Responder Solicitud</a></li>
                         </ul>
                     </div>
                 </div>
@@ -152,19 +153,26 @@
                       <thead>
                         <tr>
                           <th scope="col" class="col-xs-2">ID</th>
-                          <th scope="col" class="col-xs-8 text-center">Nombre</th>
+                          <th scope="col" class="col-xs-6 text-center">Nombre</th>
                           <th scope="col" class="col-xs-2 text-center">Cantidad</th>
+                          <th scope="col" class="col-xs-2 text-center">Stock</th>
                         </tr>
                       </thead>
                       <tbody>
                       <?php
+                        $adv = 0;
                         while ($row = $res2->fetch_assoc()){
+                          $i_id = $row["item_id"];
+                          $sql = "SELECT stock FROM inventario WHERE item_id='$i_id'";
+                          $st = $conexion->query($sql);
+                          $stock = $st->fetch_assoc()["stock"];
                           echo "
                           <tr>
                               <td>" . $row["item_id"] . "</td>
                               <td>" . $row["nombre"] . "</td>
-                              <td class='text-center'>" . $row["cantidad"] . "</td>
-                          </tr>";
+                              <td class='text-center'>" . $row["cantidad"] . "</td>";
+                              if ($stock < $row["cantidad"]) {echo "<td class='text-center text-danger'><strong>" . $stock . "</strong></td>"; $adv = 1;}
+                              else {echo "<td class='text-center'>" . $stock . "</td>";}
                         }
                        ?>
                       </tbody>

@@ -17,6 +17,7 @@
 		if ($pass == $fila['pass']){
 			$_SESSION['user'] = $fila['user'];
 			$_SESSION['tipo'] = $fila['tipo'];
+      $_SESSION['obra'] = $fila['obra'];
       $_SESSION['CREATED'] = time();
       $_SESSION['LAST_ACTIVITY'] = time();
 			header("Location: ../main.php");

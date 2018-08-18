@@ -58,6 +58,7 @@
                             <li class=><a href="ver_item.php" class="sf-brick">Ver Items</a></li>
                             <li class="active"><a href="ver_solicitudes.php" class="sf-monitor">Solicitudes</a></li>
                             <li class=><a href="gen_solicitud.php" class="sf-file-excel">Generar Solicitud</a></li>
+                            <li class=><a href="r_solicitud.php" class="sf-monitor">Responder Solicitud</a></li>
                         </ul>
                     </div>
                 </div>
