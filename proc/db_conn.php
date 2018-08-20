@@ -7,6 +7,7 @@ function db_conn() {
     if($conn->connect_error) {
         // Handle error
         header("Location: ../index.php?errno=500");
+        exit;
     }
     return $conn;
 }

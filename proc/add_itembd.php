@@ -13,10 +13,12 @@
 
   if ($conexion->query($sql) === TRUE){
     header("Location: ../add_item.php?s=1");
+    exit;
   }
 
   else {
     header("Location: ../add_item.php?s=2");
+    exit;
   }
 
 ?>

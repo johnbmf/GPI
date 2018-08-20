@@ -21,13 +21,16 @@
       $_SESSION['CREATED'] = time();
       $_SESSION['LAST_ACTIVITY'] = time();
 			header("Location: ../main.php");
+      exit;
 		}
 		else{
       header("Location: ../index.php?fail=2");
+      exit;
 		}
 	}
 
 	else{
 		header("Location: ../index.php?fail=1");
+    exit;
 	}
 ?>

@@ -17,6 +17,7 @@
   }
 
   $_SESSION['LAST_ACTIVITY'] = time();
+  $_SESSION['actual'] = 're_sol';
 
 
   $conexion = db_conn();
@@ -48,12 +49,7 @@
                 <div id="cm-menu-items-wrapper">
                     <div id="cm-menu-scroller">
                         <ul class="cm-menu-items">
-                            <li><a href="main.php" class="sf-house">Pagina Principal</a></li>
-                            <li class=><a href="add_item.php" class="sf-sign-add">Añadir Item</a></li>
-                            <li class=><a href="ver_item.php" class="sf-brick">Ver Items</a></li>
-                            <li class=><a href="ver_solicitudes.php" class="sf-monitor">Solicitudes</a></li>
-                            <li class=><a href="gen_solicitud.php" class="sf-file-excel">Generar Solicitud</a></li>
-                            <li class="active"><a href="r_solicitud.php" class="sf-monitor">Responder Solicitud</a></li>
+                            <?php include_once('proc/menus.php'); ?>
                         </ul>
                     </div>
                 </div>
@@ -192,6 +188,15 @@
                 <br>
                 <h3> Responder Solicitud </h3>
                 <hr>
+                <?php
+                  if ($adv == 1){
+                    echo "<div class='row'>
+                            <div class='col-xs-12 text-danger'><strong>Advertencia: Existen elementos solicitados que requieren mayor cantidad al stock actual. Solicite materiales en este
+                            <a href='#'>enlace</a>.</strong>
+                            </div>
+                          </div>";
+                  }
+                ?>
                 <div class="row">
                   <div class="col-xs-1">
                     <strong>Cambiar estado a: </strong>

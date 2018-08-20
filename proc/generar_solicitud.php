@@ -8,8 +8,9 @@
   $Sol_ID = $_POST["sol_id"];
   $Comentario = $_POST["comentario"];
   $FechaCreacion = DATE("y-m-d");
+  $Obra = $_SESSION['obra'];
 
-  $sql1 = "INSERT INTO solicitud VALUES ('$Sol_ID','$FechaCreacion','$FechaLimite','PENDIENTE','$Comentario')";
+  $sql1 = "INSERT INTO solicitud VALUES ('$Sol_ID','$FechaCreacion','$FechaLimite','PENDIENTE','$Comentario','$Obra')";
 
   #$sql2 = "INSERT INTO detallesolicitud VALUES ('$Sol_ID','$NombreItem','$Cantidad','$ItemID')";
 
@@ -35,9 +36,11 @@
         }
       }
       header("Location: ../gen_solicitud.php?s=1");
+      exit;
   }
   else{
     header("Location: ../gen_solicitud.php?s=2");
+    exit;
       #header("Location: ../gen_solicitud.php?s=3");
     #echo("Ha ocurrido un problema con la generación de la solicitud")
   }

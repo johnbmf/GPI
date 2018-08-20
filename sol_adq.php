@@ -17,7 +17,7 @@
   }
 
   $_SESSION['LAST_ACTIVITY'] = time();
-  $_SESSION['actual'] = 'gen_sol';
+  $_SESSION['actual'] = 'sol_adq';
 
   $conexion = db_conn();
   $sql = "SELECT * FROM inventario";
@@ -32,7 +32,7 @@
         <link rel="stylesheet" type="text/css" href="assets/css/material-design.css">
         <link rel="stylesheet" type="text/css" href="assets/css/small-n-flat.css">
         <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
-        <title>GPI - Solicitudes</title>
+        <title>GPI - Solicitud de Adquisicion</title>
     </head>
     <body class="cm-no-transition cm-1-navbar">
         <div id="cm-menu">
@@ -54,7 +54,7 @@
             <nav class="cm-navbar cm-navbar-primary">
                 <div class="btn btn-primary md-menu-white hidden-md hidden-lg" data-toggle="cm-menu"></div>
                 <div class="cm-flex">
-                    <h1>Generar Solicitud</h1>
+                    <h1>Solicitud de adquisición de materiales</h1>
                 </div>
                 <div class="dropdown pull-right">
                     <button class="btn btn-primary md-notifications-white" data-toggle="dropdown"> <span class="label label-danger">NUM</span> </button>
@@ -158,6 +158,7 @@
             <hr/>
             <h3>Recursos a solicitar</h3>
             <br>
+            <div class='text-warning'><strong>Si un elemento que quiere solicitar no está en la lista, debe primero agregarlo a la bodega en este <a href='add_item.php'>enlace</a>.</strong></div>
             <div class="row">
 
                 <div class="col-xs-3">

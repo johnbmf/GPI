@@ -17,6 +17,7 @@
   }
 
   $_SESSION['LAST_ACTIVITY'] = time();
+  $_SESSION['actual'] = 'ver_sol';
 
   $conexion = db_conn();
   $sql = "SELECT * FROM solicitud";
@@ -53,12 +54,7 @@
                 <div id="cm-menu-items-wrapper">
                     <div id="cm-menu-scroller">
                         <ul class="cm-menu-items">
-                            <li><a href="main.php" class="sf-house">Pagina Principal</a></li>
-                            <li><a href="add_item.php" class="sf-sign-add">Añadir Item</a></li>
-                            <li class=><a href="ver_item.php" class="sf-brick">Ver Items</a></li>
-                            <li class="active"><a href="ver_solicitudes.php" class="sf-monitor">Solicitudes</a></li>
-                            <li class=><a href="gen_solicitud.php" class="sf-file-excel">Generar Solicitud</a></li>
-                            <li class=><a href="r_solicitud.php" class="sf-monitor">Responder Solicitud</a></li>
+                            <?php include_once('proc/menus.php'); ?>
                         </ul>
                     </div>
                 </div>
