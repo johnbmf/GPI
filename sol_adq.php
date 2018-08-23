@@ -129,7 +129,7 @@
               }
             }
             ?>
-            <form method="POST" action="proc/generar_solicitud.php" target="_blank">
+            <form method="POST" action="proc/generar_adq.php" target="_blank">
               <h3>Datos de la solicitud</h3>
               <br>
               <div class="row">
@@ -143,18 +143,8 @@
                     </div>
                   </div>
                 </div>
-
-
-                <div class="col-xs-2">
-                  <div class="form-gruop">
-                    <label>Fecha Limite</label>
-                    <div class="input-group">
-                      <div class="input-group-addon"><i></i></div>
-                      <input type="date" name="fecha_lim" class="form-control" placeholder="limite" required>
-                    </div>
-                  </div>
-                </div>
             </div>
+
             <hr/>
             <h3>Recursos a solicitar</h3>
             <br>
