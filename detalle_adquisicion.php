@@ -22,9 +22,9 @@
 
   $conexion = db_conn();
   $sol_id = $_GET["id"];
-  $sql = "SELECT * FROM solicitud WHERE sol_id=$sol_id";
+  $sql = "SELECT * FROM solicitud_adquisicion WHERE sol_id=$sol_id";
   $resultado = $conexion->query($sql)->fetch_assoc();
-  $sql = "SELECT * FROM detallesolicitud WHERE sol_id=$sol_id";
+  $sql = "SELECT * FROM detalle_adquisicion WHERE sol_id=$sol_id";
   $res2 = $conexion->query($sql);
 
 ?>
@@ -59,7 +59,7 @@
             <nav class="cm-navbar cm-navbar-primary">
                 <div class="btn btn-primary md-menu-white hidden-md hidden-lg" data-toggle="cm-menu"></div>
                 <div class="cm-flex">
-                    <h1>Solicitud de adquisición</h1>
+                    <h1>Detalle de solicitud de adquisición</h1>
                 </div>
                 <div class="dropdown pull-right">
                     <button class="btn btn-primary md-notifications-white" data-toggle="dropdown"> <span class="label label-danger">NUM</span> </button>
@@ -169,7 +169,36 @@
                   ?>
                   </div>
                 </div>
+
+              <?php
+              if ($_SESSION['tipo'] == 4 || $_SESSION['tipo'] == 1){
+              echo '
+              <br>
+              <h3> Responder Solicitud </h3>
+              <hr>
+              <div class="row">
+                <div class="col-xs-1">
+                  <strong>Cambiar estado a: </strong>
+                </div>
+                <div class="col-xs-2">
+                  <form method="POST" action="#">
+                    <select name="estado" class="form-control" placeholder="Categoría" required>
+                      <option value="" disabled selected value>-- Seleccione un estado --</option>
+                      <option value="EN REVISION">En revisión</option>
+                      <option value="APROBADO">Aprobado</option>
+                      <option value="ENTREGADO">Entregado</option>
+                    </select>
+                </div>
+                <div class="col-xs-1">
+                    <button type="submit" class="btn btn-block btn-success">Responder</button>
+                  </form>
+                </div>
+                </div>';
+              }
+              ?>
+
             </div>
+          </div>
         <script src="assets/js/lib/jquery-2.1.3.min.js"></script>
         <script src="assets/js/jquery.mousewheel.min.js"></script>
         <script src="assets/js/jquery.cookie.min.js"></script>
