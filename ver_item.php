@@ -67,33 +67,9 @@
                     <h1>Ver Items</h1>
                 </div>
                 <div class="dropdown pull-right">
-                    <button class="btn btn-primary md-notifications-white" data-toggle="dropdown"> <span class="label label-danger">NUM</span> </button>
-                    <div class="popover cm-popover bottom">
-                        <div class="arrow"></div>
-                        <div class="popover-content">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <h4 class="list-group-item-heading text-overflow">
-                                        <i class="fa fa-fw fa-envelope"></i> Ejemplo Notificacion 1
-                                    </h4>
-                                    <p class="list-group-item-text text-overflow">Breve Descripción</p>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <h4 class="list-group-item-heading">
-                                        <i class="fa fa-fw fa-envelope"></i> Ejemplo Notificacion 2
-                                    </h4>
-                                    <p class="list-group-item-text">Breve Descripción</p>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <h4 class="list-group-item-heading">
-                                        <i class="fa fa-fw fa-warning"></i> Ejemplo Notificacion 3
-                                    </h4>
-                                    <p class="list-group-item-text">Breve Descripción</p>
-                                </a>
-                            </div>
-                            <div style="padding:10px"><a class="btn btn-success btn-block" href="#">Mostrar más</a></div>
-                        </div>
-                    </div>
+                  <?php
+                    include_once('proc/notificaciones.php');
+                  ?>
                 </div>
                 <div class="dropdown pull-right">
                     <button class="btn btn-primary md-account-circle-white" data-toggle="dropdown"></button>

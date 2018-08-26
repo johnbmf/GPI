@@ -17,6 +17,7 @@
 
   $_SESSION['LAST_ACTIVITY'] = time();
   $_SESSION['actual'] = 'main';
+  require_once("proc/db_conn.php");
 
 ?>
 <html lang="en">
@@ -53,7 +54,8 @@
                     <h1>Página Principal</h1>
                 </div>
                 <div class="dropdown pull-right">
-                    <button class="btn btn-primary md-notifications-white" data-toggle="dropdown"> <span class="label label-danger">NUM</span> </button>
+                  <!--
+                    <button class="btn btn-primary md-notifications-white" data-toggle="dropdown"> <span class="label label-danger"></span> </button>
                     <div class="popover cm-popover bottom">
                         <div class="arrow"></div>
                         <div class="popover-content">
@@ -80,6 +82,10 @@
                             <div style="padding:10px"><a class="btn btn-success btn-block" href="#">Mostrar más</a></div>
                         </div>
                     </div>
+                  -->
+                  <?php
+                    include_once('proc/notificaciones.php');
+                  ?>
                 </div>
                 <div class="dropdown pull-right">
                     <button class="btn btn-primary md-account-circle-white" data-toggle="dropdown"></button>
