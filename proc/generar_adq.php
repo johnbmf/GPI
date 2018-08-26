@@ -9,7 +9,7 @@
   $fecha = DATE("y-m-d");
   $emisor = $_SESSION['user'];
 
-  $sql1 = "INSERT INTO solicitud_adquisicion VALUES ('$sol_id','$fecha','PENDIENTE','$comentario','$emisor', '')";
+  $sql1 = "INSERT INTO solicitud_adquisicion VALUES ($sol_id,'$fecha','PENDIENTE','$comentario','$emisor', '')";
 
   #$sql2 = "INSERT INTO detallesolicitud VALUES ('$Sol_ID','$NombreItem','$Cantidad','$ItemID')";
 
@@ -23,7 +23,7 @@
           $ItemID = $ex[0];
           $NombreItem = $ex[1];
           $Cantidad = $_POST[$ind2];
-          $sql2 = "INSERT INTO detalle_adquisicion VALUES ('$sol_id','$NombreItem','$Cantidad','$ItemID')";
+          $sql2 = "INSERT INTO detalle_adquisicion VALUES ($sol_id,'$NombreItem','$Cantidad','$ItemID')";
 
           if($conexion->query($sql2) === TRUE ){
             continue;
@@ -38,7 +38,10 @@
       exit;
   }
   else{
-    header("Location: ../sol_adq.php?s=400");
+    //header("Location: ../sol_adq.php?s=400");
+    echo $sol_id;
+    echo $comentario;
+    //echo $conexion->error;
     exit;
       #header("Location: ../gen_solicitud.php?s=3");
     #echo("Ha ocurrido un problema con la generación de la solicitud")

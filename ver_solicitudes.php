@@ -98,7 +98,11 @@
              -->
              <?php
                 if ($resultado->num_rows > 0){
-                  echo '<table id="example" class="table table-striped table-hover" style="width:95%">
+                  echo '
+                  <div class = "row">
+                  <div class = "col-xs-12">
+
+                  <table id="example" class="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -129,6 +133,8 @@
                   </tr>
                 </tfoot>
               </table>
+              </div>
+              </div>
               <script>
               $(document).ready(function(){
                       $('#example').DataTable();
@@ -141,7 +147,6 @@
             <!--
 
             -->
-            <footer class="cm-footer"><span class="pull-left">Conectado como: <?php echo $_SESSION["user"];?></span><span class="pull-right">&copy; PAOMEDIA SARL</span><span class="pull-right">&copy; JIP -</span></footer>
         </div>
     </body>
 </html>

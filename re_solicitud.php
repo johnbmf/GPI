@@ -103,12 +103,12 @@
                 <h3> Detalle </h3>
                 <hr>
                 <div class="row">
-                  <div class="col-xs-1">
+                  <div class="col-xs-6 col-md-2">
                     <strong>Fecha de creación</strong><br>
                     <strong>Fecha Límite</strong><br>
                     <strong>Estado</strong><br>
                   </div>
-                  <div class="col-xs-10">
+                  <div class="col-xs-6 col-md 10">
                     <?php
                     echo ": " . $resultado["fecha_creacion"] . "<br>";
                     echo ": " . $resultado["fecha_limite"] . "<br>";
@@ -120,7 +120,7 @@
                 <h3> Materiales Solicitados </h3>
                 <hr>
                 <div class="row">
-                  <div class="col-xs-10 col-xs-offset-1">
+                  <div class="col-xs-12 col-md-offset-1 col-md-10">
                     <table class="table table-dark">
                       <thead>
                         <tr>
@@ -175,10 +175,10 @@
                     }
                     echo
                     '<div class="row">
-                      <div class="col-xs-1">
+                      <div class="col-xs-5 col-md-2">
                         <strong>Cambiar estado a: </strong>
                       </div>
-                      <div class="col-xs-2">
+                      <div class="col-xs-7 col-md-3">
 
                          <form method="POST" action="proc/state.php?id=' . $_GET["id"] . '">
                           <select name="estado" class="form-control" placeholder="Categoría" required>
@@ -188,7 +188,7 @@
                             <option value="SOLICITANDO MATERIALES">Solicitando Materiales</option>
                           </select>
                       </div>
-                      <div class="col-xs-1">
+                      <div class="col-xs-12 col-md-2">
                           <button type="submit" class="btn btn-block btn-success">Responder</button>
                         </form>
                       </div>
@@ -197,7 +197,6 @@
                 ?>
                 </div>
             </div>
-            <footer class="cm-footer"><span class="pull-left">Conectado como: <?php echo $_SESSION["user"];?></span><span class="pull-right">&copy; PAOMEDIA SARL</span><span class="pull-right">&copy; JIP -</span></footer>
         </div>
         <script src="assets/js/lib/jquery-2.1.3.min.js"></script>
         <script src="assets/js/jquery.mousewheel.min.js"></script>

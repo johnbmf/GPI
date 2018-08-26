@@ -141,7 +141,7 @@
             <!--
 
             -->
-            <footer class="cm-footer"><span class="pull-left">Conectado como: <?php echo $_SESSION["user"];?></span><span class="pull-right">&copy; PAOMEDIA SARL</span><span class="pull-right">&copy; JIP -</span></footer>
+        
         </div>
     </body>
 </html>

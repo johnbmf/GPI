@@ -92,13 +92,13 @@
                 <h3> Detalle </h3>
                 <hr>
                 <div class="row">
-                  <div class="col-xs-1">
+                  <div class="col-xs-6 col-md-2">
                     <strong>Fecha de creación</strong><br>
                     <strong>Estado</strong><br>
                     <strong>Emisor</strong><br>
                     <strong>Última Modificación</strong><br>
                   </div>
-                  <div class="col-xs-10">
+                  <div class="col-xs-6 col-md-10">
                     <?php
                     echo ": " . $resultado["fecha_creacion"] . "<br>";
                     echo ": " . $resultado["estado"] . "<br>";
@@ -111,7 +111,7 @@
                 <h3> Materiales Solicitados </h3>
                 <hr>
                 <div class="row">
-                  <div class="col-xs-10 col-xs-offset-1">
+                  <div class="col-xs-12 col-md-10 col-md-offset-1">
                     <table class="table table-dark">
                       <thead>
                         <tr>
@@ -153,10 +153,10 @@
               <h3> Responder Solicitud </h3>
               <hr>
               <div class="row">
-                <div class="col-xs-1">
+                <div class="col-md-1 col-xs-6">
                   <strong>Cambiar estado a: </strong>
                 </div>
-                <div class="col-xs-2">
+                <div class="col-md-2 col-xs-6">
                   <form method="POST" action="proc/cambiar_estado_adq.php?id=' . $_GET['id'] . '">
                     <select name="estado" class="form-control" placeholder="Categoría" required>
                       <option value="" disabled selected value>-- Seleccione un estado --</option>
@@ -165,7 +165,7 @@
                       <option value="ENTREGADO">Entregado</option>
                     </select>
                 </div>
-                <div class="col-xs-1">
+                <div class="col-md-2 col-xs-12">
                     <button type="submit" class="btn btn-block btn-success">Responder</button>
                   </form>
                 </div>

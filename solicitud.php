@@ -92,12 +92,12 @@
                 <h3> Detalle </h3>
                 <hr>
                 <div class="row">
-                  <div class="col-xs-1">
+                  <div class="col-xs-6">
                     <strong>Fecha de creación</strong><br>
                     <strong>Fecha Límite</strong><br>
                     <strong>Estado</strong><br>
                   </div>
-                  <div class="col-xs-10">
+                  <div class="col-xs-6">
                     <?php
                     echo ": " . $resultado["fecha_creacion"] . "<br>";
                     echo ": " . $resultado["fecha_limite"] . "<br>";
@@ -109,7 +109,7 @@
                 <h3> Materiales Solicitados </h3>
                 <hr>
                 <div class="row">
-                  <div class="col-xs-10 col-xs-offset-1">
+                  <div class="col-xs-12 col-md-offset-1 col-md-10">
                     <table class="table table-dark">
                       <thead>
                         <tr>
@@ -149,11 +149,11 @@
                   '<hr>
                   <div class="row">
 
-                    <div class="col-xs-1">
+                    <div class="col-xs-3 col-md-2">
                       <strong>Material: </strong>
                     </div>
 
-                    <div class="col-xs-2">
+                    <div class="col-xs-9 col-md-3">
                        <form method="POST" action="proc/respuesta_despacho.php?id=' . $_GET["id"] . '">
                           <select name="estado" class="form-control" placeholder="Respuesta" required>
                             <option value="" disabled selected value>-- Seleccione una opción --</option>
@@ -162,7 +162,7 @@
                           </select>
                     </div>
 
-                    <div class="col-xs-1">
+                    <div class="col-xs-12 col-md-2">
                         <button type="submit" class="btn btn-block btn-success">Responder</button>
                         </form>
                     </div>
@@ -171,7 +171,6 @@
                 }
                 ?>
             </div>
-            <footer class="cm-footer"><span class="pull-left">Conectado como: <?php echo $_SESSION["user"];?></span><span class="pull-right">&copy; PAOMEDIA SARL</span><span class="pull-right">&copy; JIP -</span></footer>
         </div>
         <script src="assets/js/lib/jquery-2.1.3.min.js"></script>
         <script src="assets/js/jquery.mousewheel.min.js"></script>

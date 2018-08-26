@@ -54,35 +54,6 @@
                     <h1>Página Principal</h1>
                 </div>
                 <div class="dropdown pull-right">
-                  <!--
-                    <button class="btn btn-primary md-notifications-white" data-toggle="dropdown"> <span class="label label-danger"></span> </button>
-                    <div class="popover cm-popover bottom">
-                        <div class="arrow"></div>
-                        <div class="popover-content">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <h4 class="list-group-item-heading text-overflow">
-                                        <i class="fa fa-fw fa-envelope"></i> Ejemplo Notificacion 1
-                                    </h4>
-                                    <p class="list-group-item-text text-overflow">Breve Descripción</p>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <h4 class="list-group-item-heading">
-                                        <i class="fa fa-fw fa-envelope"></i> Ejemplo Notificacion 2
-                                    </h4>
-                                    <p class="list-group-item-text">Breve Descripción</p>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <h4 class="list-group-item-heading">
-                                        <i class="fa fa-fw fa-warning"></i> Ejemplo Notificacion 3
-                                    </h4>
-                                    <p class="list-group-item-text">Breve Descripción</p>
-                                </a>
-                            </div>
-                            <div style="padding:10px"><a class="btn btn-success btn-block" href="#">Mostrar más</a></div>
-                        </div>
-                    </div>
-                  -->
                   <?php
                     include_once('proc/notificaciones.php');
                   ?>
@@ -113,7 +84,6 @@
                 <p>Descripción.</p>
                 <p>Funcionalidades a la vista.</p>
             </div>
-            <footer class="cm-footer"><span class="pull-left">Conectado como: <?php echo $_SESSION["user"];?></span><span class="pull-right">&copy; PAOMEDIA SARL</span><span class="pull-right">&copy; JIP -</span></footer>
         </div>
         <script src="assets/js/lib/jquery-2.1.3.min.js"></script>
         <script src="assets/js/jquery.mousewheel.min.js"></script>

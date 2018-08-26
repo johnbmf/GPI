@@ -110,7 +110,7 @@
               <br>
               <div class="row">
 
-                <div class="col-xs-2">
+                <div class="col-xs-6 col-md-2">
                   <div class="form-gruop">
                     <label>ID de la solicitud</label>
                     <div class="input-group">
@@ -121,7 +121,7 @@
                 </div>
 
 
-                <div class="col-xs-2">
+                <div class="col-xs-6 col-md-2">
                   <div class="form-gruop">
                     <label>Fecha Limite</label>
                     <div class="input-group">
@@ -136,7 +136,7 @@
             <br>
             <div class="row">
 
-                <div class="col-xs-3">
+                <div class="col-xs-8 col-md-4">
                   <div class="form-group">
                     <label>Item</label>
                     <div class="input-group">
@@ -154,7 +154,7 @@
                   </div>
                 </div>
 
-                <div class="col-xs-3">
+                <div class="col-xs-4 col-md-2">
                   <div class="form-group">
                     <label>Cantidad</label>
                     <div class="input-group">
@@ -167,7 +167,7 @@
 
           <div class="row">
 
-              <div class="col-xs-3">
+              <div class="col-xs-8 col-md-4">
                 <div class="form-group">
                   <div class="input-group">
                     <div class="input-group-addon"><i></i></div>
@@ -184,7 +184,7 @@
                 </div>
               </div>
 
-              <div class="col-xs-3">
+              <div class="col-xs-4 col-md-2">
                 <div class="form-group">
                   <div class="input-group">
                     <div class="input-group-addon"><i></i></div>
@@ -196,7 +196,7 @@
 
         <div class="row">
 
-            <div class="col-xs-3">
+            <div class="col-xs-8 col-md-4">
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-addon"><i></i></div>
@@ -213,7 +213,7 @@
               </div>
             </div>
 
-            <div class="col-xs-3">
+            <div class="col-xs-4 col-md-2">
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-addon"><i></i></div>
@@ -225,7 +225,7 @@
 
       <div class="row">
 
-          <div class="col-xs-3">
+          <div class="col-xs-8 col-md-4">
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon"><i></i></div>
@@ -242,7 +242,7 @@
             </div>
           </div>
 
-          <div class="col-xs-3">
+          <div class="col-xs-4 col-md-2">
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon"><i></i></div>
@@ -254,7 +254,7 @@
 
     <div class="row">
 
-        <div class="col-xs-3">
+        <div class="col-xs-8 col-md-4">
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-addon"><i></i></div>
@@ -271,7 +271,7 @@
           </div>
         </div>
 
-        <div class="col-xs-3">
+        <div class="col-xs-4 col-md-2">
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-addon"><i></i></div>
@@ -298,7 +298,7 @@
               </div>
 
               <div class="row">
-                <div class="col-xs-offset-11 col-xs-1">
+                <div class="col-xs-offset-4 col-xs-5 col-md-offset-10 col-md-2">
                     <button type="submit" class="btn btn-block btn-gpi">Solicitar</button>
                 </div>
               </div>
@@ -308,7 +308,6 @@
             <!--
             END FORM
             -->
-            <footer class="cm-footer"><span class="pull-left">Conectado como: <?php echo $_SESSION["user"];?></span><span class="pull-right">&copy; PAOMEDIA SARL</span><span class="pull-right">&copy; JIP -</span></footer>
         </div>
         <script src="assets/js/lib/jquery-2.1.3.min.js"></script>
         <script src="assets/js/jquery.mousewheel.min.js"></script>

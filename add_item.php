@@ -87,7 +87,7 @@
                 <p>Para ingresar un nuevo item al inventario llene el formulario a continuación.</p>
             <form method="POST" action="proc/add_itembd.php">
               <div class="row">
-                <div class="col-xs-3">
+                <div class="col-xs-6 col-md-3">
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><i></i></div>
@@ -96,7 +96,7 @@
                   </div>
                 </div>
 
-                <div class="col-xs-3">
+                <div class="col-xs-12 col-md-3">
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><i></i></div>
@@ -105,7 +105,7 @@
                   </div>
                 </div>
 
-                <div class="col-xs-3">
+                <div class="col-xs-12 col-md-4">
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><i></i></div>
@@ -118,7 +118,7 @@
                   </div>
                 </div>
 
-                <div class="col-xs-3">
+                <div class="col-xs-6 col-md-2">
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><i></i></div>
@@ -130,7 +130,7 @@
               </div>
 
               <div class="row">
-                <div class="col-xs-offset-11 col-xs-1">
+                <div class="col-xs-12 col-md-offset-10 col-md-2">
                     <button type="submit" class="btn btn-block btn-gpi">Añadir</button>
                 </div>
               </div>
@@ -140,7 +140,7 @@
             <!--
             END FORM
             -->
-            <footer class="cm-footer"><span class="pull-left">Conectado como: <?php echo $_SESSION["user"];?></span><span class="pull-right">&copy; PAOMEDIA SARL</span><span class="pull-right">&copy; JIP -</span></footer>
+
         </div>
         <script src="assets/js/lib/jquery-2.1.3.min.js"></script>
         <script src="assets/js/jquery.mousewheel.min.js"></script>
