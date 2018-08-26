@@ -23,7 +23,7 @@ de esta (C://wamp64/www)
 -Lista de usuarios: obra, bodega, adquisicion.  
 -Todas las contraseñas son 123456.
 
-##Flujo de funcionamiento:
+## Flujo de funcionamiento:
 -Acceso con usuario obra.  
 -Crear una solicitud en el menú: generar solicitud.  
 -En solicitudes se puede ver la solicitud creada si es que fue creada exitosamente.  
