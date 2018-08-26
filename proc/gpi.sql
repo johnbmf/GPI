@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 20-08-2018 a las 00:19:55
+-- Tiempo de generación: 26-08-2018 a las 07:17:24
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 5.6.31
 
@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS `despacho` (
   `emisor` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
   `receptor` varchar(60) COLLATE utf8_spanish_ci DEFAULT NULL,
   `sol_id` int(11) NOT NULL,
+  `obra` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`despacho_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -45,8 +46,9 @@ CREATE TABLE IF NOT EXISTS `despacho` (
 -- Volcado de datos para la tabla `despacho`
 --
 
-INSERT INTO `despacho` (`despacho_id`, `fecha_creacion`, `fecha_recepcion`, `estado`, `comentario`, `emisor`, `receptor`, `sol_id`) VALUES
-(3560, '2018-08-19', NULL, 'ESPERANDO CONFIRMACION', '', 'admin', '', 3560);
+INSERT INTO `despacho` (`despacho_id`, `fecha_creacion`, `fecha_recepcion`, `estado`, `comentario`, `emisor`, `receptor`, `sol_id`, `obra`) VALUES
+(100, '2018-08-26', '2018-08-26', 'COMPLETADA', 'STUB COMM', 'bodega', 'obra', 100, 'OBRA LAS PARCELAS 2'),
+(3560, '2018-08-19', NULL, 'ESPERANDO CONFIRMACION', '', 'admin', '', 3560, 'OBRA LAS PARCELAS 1');
 
 -- --------------------------------------------------------
 
@@ -76,7 +78,9 @@ INSERT INTO `detallesolicitud` (`sol_id`, `nombre`, `cantidad`, `item_id`) VALUE
 (3560, 'Rotomartillo 1500W', 3, '7'),
 (3560, 'Luminaria LED', 2, '1'),
 (3560, 'Calvos 1 pulgada', 5, '3'),
-(3560, 'Cemento 25kg', 1, '8');
+(3560, 'Cemento 25kg', 1, '8'),
+(100, 'Cemento 25kg', 5, '8'),
+(100, 'Rotomartillo 1500W', 20, '7');
 
 -- --------------------------------------------------------
 
@@ -91,6 +95,16 @@ CREATE TABLE IF NOT EXISTS `detalle_adquisicion` (
   `cantidad` int(11) NOT NULL,
   `item_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `detalle_adquisicion`
+--
+
+INSERT INTO `detalle_adquisicion` (`sol_id`, `nombre`, `cantidad`, `item_id`) VALUES
+(2703, 'Luminaria LED', 3, 1),
+(2703, 'Pala', 2, 4),
+(100, 'Rotomartillo 1500W', 30, 7),
+(101, 'Rotomartillo 1500W', 30, 7);
 
 -- --------------------------------------------------------
 
@@ -118,8 +132,8 @@ INSERT INTO `inventario` (`item_id`, `nombre`, `categoria`, `stock`) VALUES
 ('4', 'Pala', 'HERRAMIENTA', 50),
 ('5', 'Carretilla', 'HERRAMIENTA', 40),
 ('6', 'Placa Compactadora', 'HERRAMIENTA', 5),
-('7', 'Rotomartillo 1500W', 'HERRAMIENTA', 6),
-('8', 'Cemento 25kg', 'MATERIAL', 150);
+('7', 'Rotomartillo 1500W', 'HERRAMIENTA', 146),
+('8', 'Cemento 25kg', 'MATERIAL', 170);
 
 -- --------------------------------------------------------
 
@@ -143,6 +157,7 @@ CREATE TABLE IF NOT EXISTS `solicitud` (
 --
 
 INSERT INTO `solicitud` (`sol_id`, `fecha_creacion`, `fecha_limite`, `estado`, `comentario`, `obra`) VALUES
+(100, '2018-08-26', '2018-08-30', 'COMPLETADA', 'STUB COMMENT', 'OBRA LAS PARCELAS 2'),
 (3560, '2018-08-19', '2018-09-25', 'DESPACHADO', 'a', 'OBRA LAS PARCELAS 1'),
 (3578, '2018-08-06', '2018-08-09', 'SOLICITANDO MATERIALES', 'Despacho por entrada secundaria debido a trabajos en la entrada principal.', 'OBRA LAS PARCELAS 1'),
 (3579, '2018-08-06', '2018-08-09', 'PENDIENTE', 'Despacho por entrada secundaria debido a trabajos en la entrada principal.', 'OBRA LAS PARCELAS 1');
@@ -157,13 +172,21 @@ DROP TABLE IF EXISTS `solicitud_adquisicion`;
 CREATE TABLE IF NOT EXISTS `solicitud_adquisicion` (
   `sol_id` int(11) NOT NULL AUTO_INCREMENT,
   `fecha_creacion` date NOT NULL,
-  `fecha_limite` date NOT NULL,
   `estado` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
   `comentario` text COLLATE utf8_spanish_ci NOT NULL,
   `emisor` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
   `receptor` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`sol_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2704 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `solicitud_adquisicion`
+--
+
+INSERT INTO `solicitud_adquisicion` (`sol_id`, `fecha_creacion`, `estado`, `comentario`, `emisor`, `receptor`) VALUES
+(100, '2018-08-26', 'ENTREGADO', '', 'bodega', 'adquisicion'),
+(101, '2018-08-26', 'ENTREGADO', 'STUB COMMENT', 'bodega', 'adquisicion'),
+(2703, '2018-08-24', 'PENDIENTE', '', 'bodega', '');
 
 -- --------------------------------------------------------
 
