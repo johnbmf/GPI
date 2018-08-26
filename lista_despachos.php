@@ -17,15 +17,11 @@
   }
 
   $_SESSION['LAST_ACTIVITY'] = time();
-  $_SESSION['actual'] = 'det_adq';
-
+  $_SESSION['actual'] = 'lista_des';
 
   $conexion = db_conn();
-  $sol_id = $_GET["id"];
-  $sql = "SELECT * FROM solicitud_adquisicion WHERE sol_id=$sol_id";
-  $resultado = $conexion->query($sql)->fetch_assoc();
-  $sql = "SELECT * FROM detalle_adquisicion WHERE sol_id=$sol_id";
-  $res2 = $conexion->query($sql);
+  $sql = "SELECT * FROM despacho";
+  $resultado = $conexion->query($sql);
 
 ?>
 <html lang="en">
@@ -37,7 +33,16 @@
         <link rel="stylesheet" type="text/css" href="assets/css/material-design.css">
         <link rel="stylesheet" type="text/css" href="assets/css/small-n-flat.css">
         <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
-        <title>GPI - Solicitudes</title>
+        <script src="assets/js/lib/jquery-2.1.3.min.js"></script>
+        <script src="assets/js/jquery.mousewheel.min.js"></script>
+        <script src="assets/js/jquery.cookie.min.js"></script>
+        <script src="assets/js/fastclick.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/clearmin.min.js"></script>
+        <script src="assets/js/demo/home.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+        <title>GPI - Ver Despachos</title>
     </head>
     <body class="cm-no-transition cm-1-navbar">
         <div id="cm-menu">
@@ -59,7 +64,7 @@
             <nav class="cm-navbar cm-navbar-primary">
                 <div class="btn btn-primary md-menu-white hidden-md hidden-lg" data-toggle="cm-menu"></div>
                 <div class="cm-flex">
-                    <h1>Detalle de solicitud de adquisición</h1>
+                    <h1>Ver Despachos</h1>
                 </div>
                 <div class="dropdown pull-right">
                     <button class="btn btn-primary md-notifications-white" data-toggle="dropdown"> <span class="label label-danger">NUM</span> </button>
@@ -112,99 +117,57 @@
         </header>
         <div id="global">
             <div class="container-fluid cm-container-white" style="min-height:80vh;">
-                <h2 class="text-center" style="margin-top:0;">Solicitud <?php echo $sol_id;?></h2>
-                <h3> Detalle </h3>
-                <hr>
-                <div class="row">
-                  <div class="col-xs-1">
-                    <strong>Fecha de creación</strong><br>
-                    <strong>Estado</strong><br>
-                    <strong>Emisor</strong><br>
-                    <strong>Última Modificación</strong><br>
-                  </div>
-                  <div class="col-xs-10">
-                    <?php
-                    echo ": " . $resultado["fecha_creacion"] . "<br>";
-                    echo ": " . $resultado["estado"] . "<br>";
-                    echo ": " . $resultado["emisor"] . "<br>";
-                    echo ": " . $resultado["receptor"] . "<br>";
-                    ?>
-                  </div>
-                </div>
-                <br>
-                <h3> Materiales Solicitados </h3>
-                <hr>
-                <div class="row">
-                  <div class="col-xs-10 col-xs-offset-1">
-                    <table class="table table-dark">
-                      <thead>
+             <!--
+
+             -->
+             <?php
+                if ($resultado->num_rows > 0){
+                  echo '<table id="example" class="table table-striped table-hover" style="width:95%">
+                    <thead>
                         <tr>
-                          <th scope="col" class="col-xs-2">ID</th>
-                          <th scope="col" class="col-xs-8 text-center">Nombre</th>
-                          <th scope="col" class="col-xs-2 text-center">Cantidad</th>
+                            <th>ID</th>
+                            <th>Fecha de creación</th>
+                            <th>Emisor</th>
+                            <th>Obra</th>
+                            <th>Estado</th>
                         </tr>
-                      </thead>
-                      <tbody>
-                      <?php
-                        while ($row = $res2->fetch_assoc()){
-                          echo "
-                          <tr>
-                              <td>" . $row["item_id"] . "</td>
-                              <td>" . $row["nombre"] . "</td>
-                              <td class='text-center'>" . $row["cantidad"] . "</td>
-                          </tr>";
-                        }
-                       ?>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                <br>
-                <h3> Comentarios adicionales </h3>
-                <hr>
-                <div class="row">
-                  <div class="col-xs-10 col-xs-offset-1">
-                  <?php
-                    echo $resultado["comentario"];
-                  ?>
-                  </div>
-                </div>
+                    </thead>
+                    <tbody>';
+                  while ($row = $resultado->fetch_assoc()){
+                    echo "
+                    <tr>
+                        <td><a href='solicitud.php?id=" . $row["sol_id"] . "'> " . $row["sol_id"] . "</a></td>
+                        <td>" . $row["fecha_creacion"] . "</td>
+                        <td>" . $row["emisor"] . "</td>
+                        <td>" . $row["obra"] . "</td>
+                        <td>" . $row["estado"] . "</td>
+                    </tr>";
+                  }
 
-              <?php
-              if ($_SESSION['tipo'] == 4 || $_SESSION['tipo'] == 1){
-              echo '
-              <br>
-              <h3> Responder Solicitud </h3>
-              <hr>
-              <div class="row">
-                <div class="col-xs-1">
-                  <strong>Cambiar estado a: </strong>
-                </div>
-                <div class="col-xs-2">
-                  <form method="POST" action="proc/cambiar_estado_adq.php?id=' . $_GET['id'] . '">
-                    <select name="estado" class="form-control" placeholder="Categoría" required>
-                      <option value="" disabled selected value>-- Seleccione un estado --</option>
-                      <option value="EN REVISION">En revisión</option>
-                      <option value="APROBADO">Aprobado</option>
-                      <option value="ENTREGADO">Entregado</option>
-                    </select>
-                </div>
-                <div class="col-xs-1">
-                    <button type="submit" class="btn btn-block btn-success">Responder</button>
-                  </form>
-                </div>
-                </div>';
+                  echo "
+                </tbody>
+                <tfoot>
+                  <tr>
+                      <th>ID</th>
+                      <th>Fecha de creación</th>
+                      <th>Emisor</th>
+                      <th>Obra</th>
+                      <th>Estado</th>
+                  </tr>
+                </tfoot>
+              </table>
+              <script>
+              $(document).ready(function(){
+                      $('#example').DataTable();
+                  });
+              </script>";
               }
-              ?>
 
-            </div>
-          </div>
-        <script src="assets/js/lib/jquery-2.1.3.min.js"></script>
-        <script src="assets/js/jquery.mousewheel.min.js"></script>
-        <script src="assets/js/jquery.cookie.min.js"></script>
-        <script src="assets/js/fastclick.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/clearmin.min.js"></script>
-        <script src="assets/js/demo/home.js"></script>
+             ?>
+
+            <!--
+
+            -->
+        </div>
     </body>
 </html>

@@ -189,34 +189,36 @@
                 <h3> Responder Solicitud </h3>
                 <hr>
                 <?php
-                  if ($adv == 1){
-                    echo "<div class='row'>
-                            <div class='col-xs-12 text-danger'><strong>Advertencia: Existen elementos solicitados que requieren mayor cantidad al stock actual. Solicite materiales en este
-                            <a href='#'>enlace</a>.</strong>
-                            </div>
-                          </div>";
+                  if ($_SESSION['tipo'] == 3){    //Cambio de estado por parte del bodeguero
+                    if ($adv == 1){
+                      echo "<div class='row'>
+                              <div class='col-xs-12 text-danger'><strong>Advertencia: Existen elementos solicitados que requieren mayor cantidad al stock actual. Solicite materiales en este
+                              <a href='sol_adq.php'>enlace</a>.</strong>
+                              </div>
+                            </div>";
+                    }
+                    echo
+                    '<div class="row">
+                      <div class="col-xs-1">
+                        <strong>Cambiar estado a: </strong>
+                      </div>
+                      <div class="col-xs-2">
+
+                         <form method="POST" action="proc/state.php?id=' . $_GET["id"] . '">
+                          <select name="estado" class="form-control" placeholder="Categoría" required>
+                            <option value="" disabled selected value>-- Seleccione un estado --</option>
+                            <option value="EN REVISION">En revisión</option>
+                            <option value="DESPACHADO">Despachado</option>
+                            <option value="SOLICITANDO MATERIALES">Solicitando Materiales</option>
+                          </select>
+                      </div>
+                      <div class="col-xs-1">
+                          <button type="submit" class="btn btn-block btn-success">Responder</button>
+                        </form>
+                      </div>
+                      </div>';
                   }
                 ?>
-                <div class="row">
-                  <div class="col-xs-1">
-                    <strong>Cambiar estado a: </strong>
-                  </div>
-                  <div class="col-xs-2">
-                    <?php
-                    echo "<form method='POST' action='proc/state.php?id=" . $_GET["id"] . "'>";
-                    ?>
-                      <select name="estado" class="form-control" placeholder="Categoría" required>
-                        <option value="" disabled selected value>-- Seleccione un estado --</option>
-                        <option value="EN REVISION">En revisión</option>
-                        <option value="DESPACHADO">Despachado</option>
-                        <option value="SOLICITANDO MATERIALES">Solicitando Materiales</option>
-                      </select>
-                  </div>
-                  <div class="col-xs-1">
-                      <button type="submit" class="btn btn-block btn-success">Responder</button>
-                    </form>
-                  </div>
-                  </div>
                 </div>
             </div>
             <footer class="cm-footer"><span class="pull-left">Conectado como: <?php echo $_SESSION["user"];?></span><span class="pull-right">&copy; PAOMEDIA SARL</span><span class="pull-right">&copy; JIP -</span></footer>

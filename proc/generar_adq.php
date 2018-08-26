@@ -9,7 +9,7 @@
   $fecha = DATE("y-m-d");
   $emisor = $_SESSION['user'];
 
-  $sql1 = "INSERT INTO solicitud_adquisicion VALUES ('$sol_id','$fecha','PENDIENTE','$Comentario','$emisor', '')";
+  $sql1 = "INSERT INTO solicitud_adquisicion VALUES ('$sol_id','$fecha','PENDIENTE','$comentario','$emisor', '')";
 
   #$sql2 = "INSERT INTO detallesolicitud VALUES ('$Sol_ID','$NombreItem','$Cantidad','$ItemID')";
 
