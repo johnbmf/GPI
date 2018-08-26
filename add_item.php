@@ -17,6 +17,7 @@
 
   $_SESSION['LAST_ACTIVITY'] = time();
   $_SESSION['actual'] = 'add_item';
+  require_once("proc/db_conn.php");
 
 ?>
 <html lang="en">
