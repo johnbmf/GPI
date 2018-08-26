@@ -7,26 +7,23 @@ se recomienda descargar WAMP SERVER desde su página oficial: http://www.wampser
 -IMPORTANTE: Instalar como administrador.
 
 -Una vez instalado WAMPSERVER, ubicar la ruta de instalación, por defecto C://wamp64, y acceder a la carpeta www dentro
-de esta (C://wamp64/www)
-
+de esta (C://wamp64/www)  
 -Aquí se debe realizar la clonación del repositorio, con lo que la carpeta del proyecto quedaría como: C://wamp64/www/GPI2
 
 ## Importar base de datos forma automática
--Iniciar WAMPSERVER (esperar a que el ícono esté de color verde).
-
--Acceder a http://localhost/GPI2/proc/cargar_bd.php
-
+-Iniciar WAMPSERVER (esperar a que el ícono esté de color verde).  
+-Acceder a http://localhost/GPI2/proc/cargar_bd.php  
 -Si sale el mensaje "Importación finalizada", entonces se importó correctamente la base de datos.
 
 ## Para ejecutar:
--Iniciar WAMPSERVER (esperar a que el ícono esté de color verde).
+-Iniciar WAMPSERVER (esperar a que el ícono esté de color verde).  
 -Luego, en el navegador acceder a http://localhost/GPI2/index.php
 
 ## Datos de inicio de sesión:
--Lista de usuarios: obra, bodega, adquisicion.
+-Lista de usuarios: obra, bodega, adquisicion.  
 -Todas las contraseñas son 123456.
 
-##Flujo de funcionamiento
+##Flujo de funcionamiento:
 -Acceso con usuario obra.  
 -Crear una solicitud en el menú: generar solicitud.  
 -En solicitudes se puede ver la solicitud creada si es que fue creada exitosamente.  
